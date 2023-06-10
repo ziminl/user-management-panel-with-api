@@ -1,11 +1,13 @@
+
+
+
+
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# User data storage
 users = []
 
-# Register endpoint
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -22,7 +24,6 @@ def register():
 
     return jsonify({'message': 'Registration successful'}), 200
 
-# Login endpoint
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -37,12 +38,10 @@ def login():
     else:
         return jsonify({'message': 'Invalid username or password'}), 401
 
-# List users endpoint
 @app.route('/users', methods=['GET'])
 def list_users():
     return jsonify(users), 200
 
-# Delete user endpoint
 @app.route('/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     user = next((user for user in users if user['id'] == user_id), None)
@@ -53,15 +52,18 @@ def delete_user(user_id):
     else:
         return jsonify({'message': 'User not found'}), 404
 
-# API endpoint
 @app.route('/api', methods=['GET'])
 def api_endpoint():
-    # Your API logic here
-    # Perform any necessary data processing or actions
-
-    # Return API response
+    #api logic
+    print("something")
+    #api response
     api_data = {'message': 'This is the API endpoint'}
     return jsonify(api_data), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    
+    
+    
+    
